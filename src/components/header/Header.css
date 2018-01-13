@@ -1,0 +1,10 @@
+.header {
+    font-family: 'Oxygen', sans-serif;
+    font-family: 'Scope One', cursive;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+.header .inner {
+    font-size: 5em;
+    text-align: center;
+}
