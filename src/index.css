@@ -5,4 +5,14 @@ body {
   padding: 0;
   font-family: sans-serif;
   color: #333;
+  font-size: 1.4em;
+}
+a {
+  text-decoration: none;
+  color: #f54;
+  transition: all .3s ease-in-out;
+}
+a:hover {
+  text-decoration: none;
+  color: #333;
 }

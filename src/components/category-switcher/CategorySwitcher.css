@@ -1,0 +1,10 @@
+.category-switcher ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.category-switcher ul li a {
+    padding: 20px;
+}
