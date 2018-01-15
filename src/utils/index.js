@@ -1,1 +1,0 @@
-export { GetCategories as GetCategories } from './api.js'

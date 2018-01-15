@@ -1,0 +1,17 @@
+.post {
+    position: relative;
+    padding: 20px 0;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    border-left: 1px solid #ccc;
+}
+.post .title{
+    font-size: 1.2em;
+    margin: 0 0 20px;
+}
+.post .credit{
+    color: #666;
+    font-size: 0.6em;
+
+}

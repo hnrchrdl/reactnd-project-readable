@@ -1,0 +1,30 @@
+.post-list {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.vote-wrapper {
+    margin: 0 20px;
+    width: 40px;
+}
+.votes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.vote-score {
+    margin: 5px 5px 7px;
+}
+.options {
+    font-size: .65em;
+    color: #666;
+}
+.options .option {
+    color: #f54;
+    cursor: pointer;
+}
+.edit-post{
+    position: absolute;
+    right: 20px;
+}

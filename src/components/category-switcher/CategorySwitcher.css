@@ -8,3 +8,9 @@
 .category-switcher ul li a {
     padding: 20px;
 }
+.category-switcher ul li a.active {
+    border-bottom: 1px solid #f54;
+}
+.category-switcher ul li a:hover {
+    color: #f54;
+}

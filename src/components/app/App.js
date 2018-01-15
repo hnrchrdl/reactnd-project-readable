@@ -1,16 +1,22 @@
-import './App.css';
+import './App.css'
 
-import React, { Component } from 'react';
+import {
+  CategorySwitcher,
+  Header,
+  PostList,
+} from '../'
+import React, { Component } from 'react'
 
-import { CategorySwitcher } from '../'
-import { Header } from '../'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
       <div className="app">
-        <Header></Header>
-        <CategorySwitcher></CategorySwitcher>
+        <Header />
+        <CategorySwitcher />
+        <Route exact path="/" component={PostList} />
+        <Route path="/:category" component={PostList} />
       </div>
     );
   }

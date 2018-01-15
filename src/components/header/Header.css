@@ -7,3 +7,21 @@
     font-size: 4em;
     text-align: center;
 }
+.new {
+    border-radius: 50%;
+    background-color: #f54;
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    text-align: center;
+    color: #fff;
+    font-size: 2em;
+    line-height: 100px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.new:hover {
+    transform: scale(1.3);
+}

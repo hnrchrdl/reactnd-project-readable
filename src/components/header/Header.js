@@ -6,7 +6,11 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-       <div className="inner">readable</div>
+        <div className="inner">
+          readable
+        </div>
+        <div className="new">+</div>
+        
       </div>
     );
   }
