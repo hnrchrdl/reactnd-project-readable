@@ -1,6 +1,10 @@
-import { LOAD_POSTS_SUCCESS, UPDATE_POST_SUCCESS } from '../actions/post'
+import {
+    LOAD_POSTS_SUCCESS,
+    UPDATE_POST_SORTING,
+    UPDATE_POST_SUCCESS
+} from '../actions/post'
 
-const postReducer = (state = { list: [], error: null }, action) => {
+const postReducer = (state = { posts: [], error: null, sorting: {} }, action) => {
     switch(action.type) {
         case LOAD_POSTS_SUCCESS:
             return { 
@@ -17,6 +21,11 @@ const postReducer = (state = { list: [], error: null }, action) => {
                     } 
                     return post
                 })
+            }
+        case UPDATE_POST_SORTING:
+            return {
+                ...state,
+                sorting: action.sorting
             }
         default:
             return state
