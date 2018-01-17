@@ -6,12 +6,27 @@
     flex-direction: row;
     border-left: 1px solid #ccc;
 }
+.post.details {
+    border-left: none;
+}
 .post .title{
     font-size: 1.2em;
-    margin: 0 0 20px;
+}
+.post.details .title{
+    font-size: 1.5em;
+}
+.post.details .body {
+    font-family: 'Scope One';
+    font-size: 1.2em;
+    margin: 20px 0;
 }
 .post .credit{
+    margin: 20px 0;    
     color: #666;
     font-size: 0.6em;
-
+}
+.post.details .credit{
+    margin: 20px 0;    
+    color: #666;
+    font-size: 0.8em;
 }

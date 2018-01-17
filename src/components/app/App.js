@@ -1,13 +1,13 @@
-import './App.css'
+import './App.css';
 
 import {
   CategorySwitcher,
   Header,
-  PostList,
-} from '../'
-import React, { Component } from 'react'
-
-import { Route } from 'react-router-dom'
+  PostDetails,
+  PostList
+} from '../../components';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -15,8 +15,11 @@ class App extends Component {
       <div className="app">
         <Header />
         <CategorySwitcher />
-        <Route exact path="/" component={PostList} />
-        <Route path="/:category" component={PostList} />
+        <Switch>
+          <Route exact path="/" component={PostList} />
+          <Route exact path="/:category" component={PostList} />
+          <Route exact path="/:category/:postid" component={PostDetails} />
+        </Switch>
       </div>
     );
   }

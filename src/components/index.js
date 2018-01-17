@@ -6,3 +6,4 @@ export { default as Post } from './post/Post';
 export { default as PostEdit } from './post-edit/PostEdit';
 export { default as Vote } from './vote/Vote';
 export { default as Button } from './button/Button';
+export { default as PostDetails } from './post-details/PostDetails'

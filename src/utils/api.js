@@ -38,6 +38,12 @@ export const fetchPosts = (category = null) => (
     get(`${API_URL}${category ? `/${category}` : ''}/posts`)
 )
 
+// Fetch a post by it's id.
+// Returns a post.
+export const fetchPost = (id) => (
+    get(`${API_URL}/posts/${id}`)
+)
+
 // Vote on a post.
 // Option in the form of { option: 'upVote' / 'downVote' }.
 // Returns the post.

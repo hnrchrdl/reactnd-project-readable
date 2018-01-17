@@ -1,3 +1,3 @@
 
 export { fetchCategories } from './category'
-export { fetchPosts, upvotePost, downvotePost, receive_sorting } from './post'
+export { fetchPosts, fetchPost, upvotePost, downvotePost, receive_sorting } from './post'

@@ -15,7 +15,7 @@ class Post extends Component {
     const { post } = this.props;
     
     return (
-      <div className="post">
+      <div className={`post${this.props.showDetails ? ' details' : ''}`}>
         <div className="options edit-post">
           <span className="option" onClick={ _ => _}>edit</span>
           {' | '}
@@ -36,10 +36,11 @@ class Post extends Component {
                 { post.title }
               </div> )
             : ( <div className="title">
-                <Link to={`category/${post.id}`}>{ post.title }</Link>
+                <Link to={`${post.category}/${post.id}`}>{ post.title }</Link>
               </div> )
           }
-          { this.props.showDetails && ( <div className="body">
+          { this.props.showDetails && ( 
+            <div className="body">
               { post.body }
             </div> )
           }
