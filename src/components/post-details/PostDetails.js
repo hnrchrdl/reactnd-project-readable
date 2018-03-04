@@ -19,7 +19,7 @@ class PostDetails extends Component {
         // get the post from the props
         const { post } = this.props;
         return (
-            <div className="post-details">
+            <div className="container post-details">
                 {post && (
                     <Post
                         post={post}

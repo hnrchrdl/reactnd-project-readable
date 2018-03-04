@@ -2,6 +2,8 @@ import './Header.css';
 
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom'
+
 class Header extends Component {
   render() {
     return (
@@ -9,8 +11,10 @@ class Header extends Component {
         <div className="inner">
           readable
         </div>
-        <div className="new">+</div>
-        
+        <Link to="/edit/0">
+          <div className="new">+</div>
+        </Link>
+
       </div>
     );
   }

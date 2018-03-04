@@ -17,22 +17,37 @@ a:hover {
   color: #333;
 }
 
-textarea, input {
+textarea, input, select, option {
   border: 1px solid #ddd;
   outline: none;
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
   font-family: 'Scope One';
+  background-color: #fff;
+  box-sizing: border-box;
+  
 }
+
 textarea:focus, input:focus {
   border: 1px solid rgb(228, 141, 133);
   outline: none;
 }
 input {
-  margin: 0 0 2px;
+  margin: 0 0 5px;
 }
 textarea {
   height: 80px;
   resize: vertical;
+}
+select {
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  appearance: none;       /* remove default arrow */
+  margin: 0 0 5px;
+}
+.container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
 }

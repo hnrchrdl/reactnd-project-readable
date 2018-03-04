@@ -28,18 +28,6 @@ const post = (url, body) => (
         .then(res => res.json())
 )
 
-// Generic DELETE request.
-const del = (url, body) => (
-    fetch(url, {
-        method: 'DELETE',
-        headers: {
-            'Authorization': API_TOKEN,
-            'Accept': 'application/json',
-        }
-    })
-        .then(res => res.json())
-)
-
 // Generic PU request.
 const put = (url, body) => (
     fetch(url, {
@@ -49,6 +37,18 @@ const put = (url, body) => (
             'Authorization': API_TOKEN,
             'Accept': 'application/json',
             'Content-Type': 'application/json'
+        }
+    })
+        .then(res => res.json())
+)
+
+// Generic DELETE request.
+const del = (url, body) => (
+    fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': API_TOKEN,
+            'Accept': 'application/json',
         }
     })
         .then(res => res.json())
@@ -79,6 +79,36 @@ export const fetchPost = (id) => (
 // Returns the post.
 export const votePost = (id, option) => (
     post(`${API_URL}/posts/${id}`, option)
+)
+
+
+// Add a new Post.
+export const addPost = ({ title, body, author, category }) => {
+    const data = {
+        id: generateUUID(),
+        timestamp: Date.now(),
+        title: title,
+        body: body,
+        author: author,
+        category: category
+    }
+    return post(`${API_URL}/posts`, data)
+}
+
+
+// Updates a post.
+export const updatePost = ({ title, body }) => {
+    const data = {
+        title: post.title,
+        body: post.body
+    }
+    return put(`${API_URL}/posts/${post.id}`, data)
+}
+
+
+// Delete a post
+export const deletePost = (id) => (
+    del(`${API_URL}/posts/${id}`)
 )
 
 

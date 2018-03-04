@@ -42,7 +42,7 @@ class PostList extends Component {
     const { posts } = this.props;
 
     return (
-      <div className="post-list">
+      <div className="container post-list">
         {this.renderSortBar(posts)}
         {this.renderPostList(posts)}
       </div>
@@ -81,6 +81,7 @@ class PostList extends Component {
             posts.length > 1 && (
               <span
                 key={option.key}
+                style={{ marginRight: '8px' }}
                 className={`option${this.props.sorting.key === option.key ? ' active' : ''}`}
                 onClick={_ => this.sortPosts(option)}>
                 {option.display}
