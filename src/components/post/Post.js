@@ -1,51 +1,51 @@
 import './Post.css';
 
 import React, { Component } from 'react';
-import { downvotePost, upvotePost } from '../../actions';
 
 import { Button } from '../../components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { timestampToDateString } from '../../utils/helper';
 
+// Presenter Component for a Post //
 class Post extends Component {
 
   render() {
 
-    const { post } = this.props;
-    
+    const { post, upvote, downvote } = this.props;
+
     return (
       <div className={`post${this.props.showDetails ? ' details' : ''}`}>
         <div className="options edit-post">
-          <span className="option" onClick={ _ => _}>edit</span>
+          <span className="option" onClick={_ => _}>edit</span>
           {' | '}
-          <span className="option" onClick={ _ => _}>delete</span>
+          <span className="option" onClick={_ => _}>delete</span>
         </div>
         <div className="vote-wrapper">
           <div className="votes">
-            <Button text="+" onClick={ _ => this.props.upvotePost(post.id) } />
+            <Button text="+" onClick={_ => this.props.upvote(post.id)} />
             <div className="vote-score">
-              { post.voteScore }
+              {post.voteScore}
             </div>
-            <Button text="-" onClick={ _ => this.props.downvotePost(post.id) } />
+            <Button text="-" onClick={_ => this.props.downvote(post.id)} />
           </div>
         </div>
         <div className="post-wrapper">
-          { this.props.showDetails
-            ? ( <div className="title">
-                { post.title }
-              </div> )
-            : ( <div className="title">
-                <Link to={`${post.category}/${post.id}`}>{ post.title }</Link>
-              </div> )
+          {this.props.showDetails
+            ? (<div className="title">
+              {post.title}
+            </div>)
+            : (<div className="title">
+              <Link to={`${post.category}/${post.id}`}>{post.title}</Link>
+            </div>)
           }
-          { this.props.showDetails && ( 
+          {this.props.showDetails && (
             <div className="body">
-              { post.body }
-            </div> )
+              {post.body}
+            </div>)
           }
           <div className="credit">
-            {timestampToDateString(post.timestamp)} by <b>{post.author}</b> in <Link to={ '/' + post.category }>{ post.category }</Link>.
+            {timestampToDateString(post.timestamp)} by <b>{post.author}</b> in <Link to={'/' + post.category}>{post.category}</Link>.
           </div>
           <div className="credit">
             {post.commentCount} comments.
@@ -56,12 +56,7 @@ class Post extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
-});
 
-const mapDispatchToProps = dispatch => ({
-  upvotePost: upvotePost(dispatch),
-  downvotePost: downvotePost(dispatch)
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+
+export default Post;

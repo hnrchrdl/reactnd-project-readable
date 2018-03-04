@@ -1,7 +1,7 @@
 import './PostList.css';
 
 import React, { Component } from 'react';
-import { fetchPosts, receive_sorting } from '../../actions';
+import { downvotePost, fetchPosts, receive_sorting, upvotePost } from '../../actions';
 
 import { Link } from 'react-router-dom';
 import { Post } from '../../components';
@@ -28,11 +28,12 @@ const SORT_OPTIONS = [{
 class PostList extends Component {
 
   componentDidMount() {
+    // fetch all posts
     this.props.fetchPosts()
   }
 
   render() {
-
+    // grab the post list from props
     const { posts } = this.props;
 
     return (
@@ -44,17 +45,23 @@ class PostList extends Component {
   }
 
   renderPostList(posts) {
-
     if (posts.length > 0) {
       return (
         <div>
           {posts.map(post => (
-            <Post key={post.id} post={post} showDetails={false} />
+            <Post
+              key={post.id}
+              post={post}
+              showDetails={true}
+              upvote={this.props.upvotePost}
+              downvote={this.props.downvotePost}
+            />
           ))}
         </div>
       );
     }
   }
+
 
   renderSortBar(posts) {
     if (posts.length > 0) {
@@ -120,7 +127,9 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchPosts: fetchPosts(dispatch),
-  sortPosts: (sortOption) => dispatch(receive_sorting(sortOption))
+  sortPosts: (sortOption) => dispatch(receive_sorting(sortOption)),
+  upvotePost: upvotePost(dispatch),
+  downvotePost: downvotePost(dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);

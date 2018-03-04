@@ -1,11 +1,11 @@
 import './PostDetails.css';
 
 import React, { Component } from 'react';
+import { downvotePost, fetchPosts, upvotePost } from '../../actions';
 
 import { Link } from 'react-router-dom';
 import { Post } from '../../components';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../../actions';
 
 class PostDetails extends Component {
     componentDidMount() {
@@ -18,7 +18,14 @@ class PostDetails extends Component {
         const { post } = this.props;
         return (
             <div className="post-details">
-                {post && <Post post={post} showDetails={true} />}
+                {post && (
+                    <Post
+                        post={post}
+                        showDetails={true}
+                        upvote={this.props.upvotePost}
+                        downvote={this.props.downvotePost}
+                    />
+                )}
             </div>
         );
     }
@@ -31,7 +38,9 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchPosts: fetchPosts(dispatch)
+    fetchPosts: fetchPosts(dispatch),
+    upvotePost: upvotePost(dispatch),
+    downvotePost: downvotePost(dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);
