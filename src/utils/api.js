@@ -3,6 +3,9 @@ import { generateUUID } from './helper'
 const API_TOKEN = process.env.REACT_APP_API_AUTH
 const API_URL = process.env.REACT_APP_API_URL
 
+
+////////// GENERICS /////////////////////////////
+
 // Generic GET request.
 const get = url => (
     fetch(url, {
@@ -43,7 +46,7 @@ const put = (url, body) => (
 )
 
 // Generic DELETE request.
-const del = (url, body) => (
+const del = url => (
     fetch(url, {
         method: 'DELETE',
         headers: {
@@ -54,7 +57,7 @@ const del = (url, body) => (
         .then(res => res.json())
 )
 
-
+////////// POSTS /////////////////////////////
 
 // Fetch all categories.
 // Returns a list of categories.
@@ -107,10 +110,12 @@ export const updatePost = ({ title, body }) => {
 
 
 // Delete a post
-export const deletePost = (id) => (
+export const deletePost = id => (
     del(`${API_URL}/posts/${id}`)
 )
 
+
+////////// COMMENTS /////////////////////////////
 
 // Fetch comments by post id.
 // Returns a list of comments.
@@ -152,7 +157,7 @@ export const updateComment = ({ id, body }) => {
     return put(`${API_URL}/comments/${id}`, update);
 }
 
-// Delete a post
+// Delete a Comment
 export const deleteComment = id => (
     del(`${API_URL}/comments/${id}`)
 );

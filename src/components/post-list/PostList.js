@@ -1,7 +1,7 @@
 import './PostList.css';
 
 import React, { Component } from 'react';
-import { downvotePost, fetchPosts, receive_sorting, upvotePost } from '../../actions';
+import { deletePost, downvotePost, fetchPosts, receive_sorting, upvotePost } from '../../actions';
 
 import { Link } from 'react-router-dom';
 import Post from '../post/Post';
@@ -50,6 +50,8 @@ class PostList extends Component {
   }
 
   renderPostList(posts) {
+    const { upvotePost, downvotePost, deletePost } = this.props;
+    const editPost = this.editPost;
     if (posts.length > 0) {
       return (
         <div>
@@ -58,8 +60,10 @@ class PostList extends Component {
               key={post.id}
               post={post}
               showDetails={false}
-              upvote={this.props.upvotePost}
-              downvote={this.props.downvotePost}
+              upvote={_ => upvotePost(post.id)}
+              downvote={_ => downvotePost(post.id)}
+              edit={_ => editPost(post.id)}
+              del={_ => deletePost(post.id)}
             />
           ))}
         </div>
@@ -143,7 +147,8 @@ const mapDispatchToProps = dispatch => ({
   fetchPosts: fetchPosts(dispatch),
   sortPosts: (sortOption) => dispatch(receive_sorting(sortOption)),
   upvotePost: upvotePost(dispatch),
-  downvotePost: downvotePost(dispatch)
+  downvotePost: downvotePost(dispatch),
+  deletePost: deletePost(dispatch)
 });
 
 //////// EXPORTS //////////////////////////////

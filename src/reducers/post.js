@@ -44,7 +44,7 @@ const postReducer = (state = { posts: [], error: null, sorting: {} }, action) =>
         case REMOVE_POST_SUCCESS:
             return {
                 ...state,
-                posts: state.post.posts.filter(post => {
+                posts: state.posts.filter(post => {
                     if (post.id === action.id) {
                         return false;
                     }

@@ -111,12 +111,10 @@ export const upsertPost = dispatch => post => {
     }
 }
 
-// upsert post
-// if post has id, update the post
-// else add as new post
+// delete post
 export const deletePost = dispatch => id => {
-    api
-        .deletePost
+    return api
+        .deletePost(id)
         .then(_ => {
             dispatch(remove_post(id))
         });

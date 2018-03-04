@@ -6,6 +6,8 @@
 .options .option {
     cursor: pointer;
     color: #f54;
+    z-index: 9999;
+    position: relative;
 }
 .options .option.active {
     border-bottom: 1px solid #f54;

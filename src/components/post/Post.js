@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import { timestampToDateString } from '../../utils/helper';
 
-export default ({ post, upvote, downvote, showDetails, comments, addComment }) => (
+export default ({ post, upvote, downvote, edit, del, showDetails, comments, addComment }) => (
 
   <div className={`post${showDetails ? ' details' : ''}`}>
     <div className="options edit-post">
-      <span className="option" onClick={_ => _}>edit</span>
+      <Link to={`/edit/${post.id}`} ><span className="option">edit</span></Link>
       {' | '}
-      <span className="option" onClick={_ => _}>delete</span>
+      <span className="option" onClick={_ => del()}>delete</span>
     </div>
     <div className="vote-wrapper">
       <div className="votes">
