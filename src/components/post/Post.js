@@ -7,56 +7,43 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { timestampToDateString } from '../../utils/helper';
 
-// Presenter Component for a Post //
-class Post extends Component {
+export default ({ post, upvote, downvote, showDetails }) => (
 
-  render() {
-
-    const { post, upvote, downvote } = this.props;
-
-    return (
-      <div className={`post${this.props.showDetails ? ' details' : ''}`}>
-        <div className="options edit-post">
-          <span className="option" onClick={_ => _}>edit</span>
-          {' | '}
-          <span className="option" onClick={_ => _}>delete</span>
+  <div className={`post${showDetails ? ' details' : ''}`}>
+    <div className="options edit-post">
+      <span className="option" onClick={_ => _}>edit</span>
+      {' | '}
+      <span className="option" onClick={_ => _}>delete</span>
+    </div>
+    <div className="vote-wrapper">
+      <div className="votes">
+        <Button text="+" onClick={_ => upvote(post.id)} />
+        <div className="vote-score">
+          {post.voteScore}
         </div>
-        <div className="vote-wrapper">
-          <div className="votes">
-            <Button text="+" onClick={_ => this.props.upvote(post.id)} />
-            <div className="vote-score">
-              {post.voteScore}
-            </div>
-            <Button text="-" onClick={_ => this.props.downvote(post.id)} />
-          </div>
-        </div>
-        <div className="post-wrapper">
-          {this.props.showDetails
-            ? (<div className="title">
-              {post.title}
-            </div>)
-            : (<div className="title">
-              <Link to={`${post.category}/${post.id}`}>{post.title}</Link>
-            </div>)
-          }
-          {this.props.showDetails && (
-            <div className="body">
-              {post.body}
-            </div>)
-          }
-          <div className="credit">
-            {timestampToDateString(post.timestamp)} by <b>{post.author}</b> in <Link to={'/' + post.category}>{post.category}</Link>.
-          </div>
-          <div className="credit">
-            {post.commentCount} comments.
-          </div>
-        </div>
+        <Button text="-" onClick={_ => downvote(post.id)} />
       </div>
-    );
-  }
-}
-
-
-
-
-export default Post;
+    </div>
+    <div className="post-wrapper">
+      {showDetails
+        ? (<div className="title">
+          {post.title}
+        </div>)
+        : (<div className="title">
+          <Link to={`${post.category}/${post.id}`}>{post.title}</Link>
+        </div>)
+      }
+      {showDetails && (
+        <div className="body">
+          {post.body}
+        </div>)
+      }
+      <div className="credit">
+        {timestampToDateString(post.timestamp)} by <b>{post.author}</b> in <Link to={'/' + post.category}>{post.category}</Link>.
+          </div>
+      <div className="credit">
+        {post.commentCount} comments.
+          </div>
+    </div>
+  </div>
+)

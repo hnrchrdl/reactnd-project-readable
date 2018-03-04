@@ -8,6 +8,8 @@ import { Post } from '../../components';
 import { connect } from 'react-redux';
 import { sortBy } from '../../utils/helper';
 
+//////// CONSTANTS //////////////////////////////
+
 const SORT_OPTIONS = [{
   key: 'voteScore',
   display: 'votes',
@@ -25,10 +27,13 @@ const SORT_OPTIONS = [{
   primer: x => x
 }];
 
+
+//////// COMPONENT //////////////////////////////
+
 class PostList extends Component {
 
   componentDidMount() {
-    // fetch all posts
+    // fetch all posts when mounting
     this.props.fetchPosts()
   }
 
@@ -62,9 +67,10 @@ class PostList extends Component {
     }
   }
 
-
   renderSortBar(posts) {
     if (posts.length > 0) {
+      // If there is at least one post, show how many posts there are.
+      // if there are at least two posts, also show options for sorting.
       return (
         <div className="options sort-posts">
           <span>
@@ -84,6 +90,7 @@ class PostList extends Component {
         </div>
       );
     } else {
+      // If there are no posts, show a link to add a new one.
       return (
         <div className="options">
           0 posts. <Link to="/edit">Add a new one</Link>!
@@ -99,6 +106,9 @@ class PostList extends Component {
     this.props.sortPosts({ key, reverse });
   }
 }
+
+
+//////// HELPER //////////////////////////////
 
 // filter posts based on the category props from router
 const getFilteredPosts = (posts, match) => {
@@ -120,6 +130,9 @@ const getSortedPosts = (posts, sorting) => {
   return posts;
 };
 
+
+//////// MAP TO PROPS //////////////////////////////
+
 const mapStateToProps = (state, props) => ({
   posts: getSortedPosts(getFilteredPosts(state.post.posts, props.match), state.post.sorting),
   sorting: state.post.sorting
@@ -131,5 +144,7 @@ const mapDispatchToProps = dispatch => ({
   upvotePost: upvotePost(dispatch),
   downvotePost: downvotePost(dispatch)
 });
+
+//////// EXPORTS //////////////////////////////
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);
