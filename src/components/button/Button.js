@@ -6,11 +6,11 @@ class Button extends Component {
 
   render() {
 
-    const { text, onClick } = this.props
-
+    const { text, onClick, muted } = this.props
+    const btnClass = `button${muted ? ' muted' : ''}${text.length === 1 ? ' squared' : ''}`;
     return (
-      <div className="button" onClick={ onClick }>
-        { text }
+      <div className={btnClass} onClick={onClick}>
+        {text}
       </div>
     )
   }

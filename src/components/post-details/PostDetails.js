@@ -3,8 +3,7 @@ import './PostDetails.css';
 import React, { Component } from 'react';
 import { downvotePost, fetchPosts, upvotePost } from '../../actions';
 
-import { Link } from 'react-router-dom';
-import { Post } from '../../components';
+import Post from '../post/Post';
 import { connect } from 'react-redux';
 
 //////// COMPONENT //////////////////////////////
@@ -27,6 +26,7 @@ class PostDetails extends Component {
                         showDetails={true}
                         upvote={this.props.upvotePost}
                         downvote={this.props.downvotePost}
+                        comments={this.props.commments}
                     />
                 )}
             </div>
@@ -41,7 +41,8 @@ const mapStateToProps = (state, props) => ({
     // from the list of posts, find the one matching the id from url params
     post: props.match.params
         ? state.post.posts.find(post => post.id === props.match.params.postid)
-        : null
+        : null,
+    comments: state.comment.comments
 });
 
 const mapDispatchToProps = dispatch => ({

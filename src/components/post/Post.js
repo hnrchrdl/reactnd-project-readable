@@ -1,13 +1,12 @@
 import './Post.css';
 
-import React, { Component } from 'react';
-
-import { Button } from '../../components';
+import Button from '../button/Button';
+import CommentList from '../comments/CommentList';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from 'react';
 import { timestampToDateString } from '../../utils/helper';
 
-export default ({ post, upvote, downvote, showDetails }) => (
+export default ({ post, upvote, downvote, showDetails, comments, addComment }) => (
 
   <div className={`post${showDetails ? ' details' : ''}`}>
     <div className="options edit-post">
@@ -35,7 +34,7 @@ export default ({ post, upvote, downvote, showDetails }) => (
       }
       {showDetails && (
         <div className="body">
-          {post.body}
+          <pre>{post.body}</pre>
         </div>)
       }
       <div className="credit">
@@ -43,7 +42,11 @@ export default ({ post, upvote, downvote, showDetails }) => (
           </div>
       <div className="credit">
         {post.commentCount} comments.
-          </div>
+      </div>
+      {showDetails
+        ? <CommentList postId={post.id} />
+        : null
+      }
     </div>
   </div>
 )

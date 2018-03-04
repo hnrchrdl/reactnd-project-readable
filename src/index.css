@@ -16,3 +16,23 @@ a:hover {
   text-decoration: none;
   color: #333;
 }
+
+textarea, input {
+  border: 1px solid #ddd;
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: 'Scope One';
+}
+textarea:focus, input:focus {
+  border: 1px solid rgb(228, 141, 133);
+  outline: none;
+}
+input {
+  margin: 0 0 2px;
+}
+textarea {
+  height: 80px;
+  resize: vertical;
+}

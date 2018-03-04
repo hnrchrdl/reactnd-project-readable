@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { downvotePost, fetchPosts, receive_sorting, upvotePost } from '../../actions';
 
 import { Link } from 'react-router-dom';
-import { Post } from '../../components';
+import Post from '../post/Post';
 import { connect } from 'react-redux';
 import { sortBy } from '../../utils/helper';
 
@@ -14,7 +14,7 @@ const SORT_OPTIONS = [{
   key: 'voteScore',
   display: 'votes',
   reverse: true,
-  primer: x => parseInt(x)
+  primer: x => parseInt(x, 10)
 }, {
   key: 'timestamp',
   display: 'date',
@@ -57,7 +57,7 @@ class PostList extends Component {
             <Post
               key={post.id}
               post={post}
-              showDetails={true}
+              showDetails={false}
               upvote={this.props.upvotePost}
               downvote={this.props.downvotePost}
             />

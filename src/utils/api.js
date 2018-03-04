@@ -1,3 +1,5 @@
+import { generateUUID } from './helper'
+
 const API_TOKEN = process.env.REACT_APP_API_AUTH
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -9,7 +11,7 @@ const get = url => (
             'Accept': 'application/json',
         }
     })
-    .then(res => res.json())
+        .then(res => res.json())
 )
 
 // Generic POST request.
@@ -17,14 +19,42 @@ const post = (url, body) => (
     fetch(url, {
         method: 'POST',
         body: JSON.stringify(body),
-        headers: { 
+        headers: {
             'Authorization': API_TOKEN,
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
     })
-    .then(res => res.json())
+        .then(res => res.json())
 )
+
+// Generic DELETE request.
+const del = (url, body) => (
+    fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': API_TOKEN,
+            'Accept': 'application/json',
+        }
+    })
+        .then(res => res.json())
+)
+
+// Generic PU request.
+const put = (url, body) => (
+    fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(body),
+        headers: {
+            'Authorization': API_TOKEN,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(res => res.json())
+)
+
+
 
 // Fetch all categories.
 // Returns a list of categories.
@@ -50,3 +80,49 @@ export const fetchPost = (id) => (
 export const votePost = (id, option) => (
     post(`${API_URL}/posts/${id}`, option)
 )
+
+
+// Fetch comments by post id.
+// Returns a list of comments.
+export const fetchComments = (id) => (
+    get(`${API_URL}/posts/${id}/comments`)
+)
+
+// Vote on a comment by comment id.
+// Option in the form of { option: 'upVote' / 'downVote' }.
+// Returns the comment.
+export const voteComment = (id, option) => (
+    post(`${API_URL}/comments/${id}`, option)
+)
+
+
+// Add a comment on a post.
+// Option in the form of { option: 'upVote' / 'downVote' }.
+// Returns the comment.
+export const addComment = ({ body, author, parentId }) => {
+    const id = generateUUID();
+    const timestamp = Date.now();
+    const comment = {
+        id,
+        timestamp,
+        body,
+        author,
+        parentId
+    }
+    return post(`${API_URL}/comments`, comment);
+}
+
+// Updates a comment.
+// Returns the comment.
+export const updateComment = ({ id, body }) => {
+    const update = {
+        timestamp: Date.now(),
+        body: body
+    }
+    return put(`${API_URL}/comments/${id}`, update);
+}
+
+// Delete a post
+export const deleteComment = id => (
+    del(`${API_URL}/comments/${id}`)
+);

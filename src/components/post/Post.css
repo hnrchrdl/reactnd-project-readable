@@ -15,18 +15,34 @@
 .post.details .title{
     font-size: 1.5em;
 }
-.post.details .body {
+.post.details .body pre {
     font-family: 'Scope One';
     font-size: 1.2em;
-    margin: 20px 0;
+    margin: 30px 0;
+}
+.post-wrapper {
+    flex: 1 1 auto;
+    position: relative;
 }
 .post .credit{
     margin: 20px 0;    
-    color: #666;
+    color: #888;
     font-size: 0.6em;
 }
 .post.details .credit{
     margin: 20px 0;    
-    color: #666;
+    color: #bbb;
     font-size: 0.8em;
+}
+.vote-wrapper {
+    margin: 0 20px;
+    width: 40px;
+}
+.votes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.vote-score {
+    margin: 5px 5px 7px;
 }

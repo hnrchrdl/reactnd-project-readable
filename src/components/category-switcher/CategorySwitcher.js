@@ -15,31 +15,31 @@ class CategorySwitcher extends Component {
   render() {
 
     let { categories } = this.props
-    categories = [ { path: null, name: 'all' }, ...categories];
+    categories = [{ path: null, name: 'all' }, ...categories];
 
     return (
       <div className="category-switcher">
-        { this._renderCategoryList(categories) }
+        {this._renderCategoryList(categories)}
       </div>
     );
   }
 
   _renderCategoryList(categories) {
 
-    if(categories) {
+    if (categories) {
       return (
         <ul>
-          { categories.map((category, idx) => this._renderCategory(category, idx)) }
+          {categories.map((category, idx) => this._renderCategory(category, idx))}
         </ul>
       )
     }
     return;
   }
 
-  _renderCategory (category, idx) {
+  _renderCategory(category, idx) {
     return (
       <li key={idx}>
-        <NavLink to={ category.path ? `/${category.path}` : '/' } exact={ true }>{category.name}</NavLink>
+        <NavLink to={category.path ? `/${category.path}` : '/'} exact={true}>{category.name}</NavLink>
       </li>
     )
   }

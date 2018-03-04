@@ -7,16 +7,16 @@ export const UPDATE_POST_SUCCESS = 'UPDATE_POST';
 export const UPDATE_POST_SORTING = 'UPDATE_POST_SORTING';
 
 
-//// Sync Action Creators ////
+////////// ACTION CREATORS SYNC ////////////////
 
 // Receive a list of posts.
-export const receive_posts = posts => ({
+const receive_posts = posts => ({
     type: LOAD_POSTS_SUCCESS,
     posts
 });
 
 // Receive the details of a post.
-export const receive_post_details = post => ({
+const receive_post_details = post => ({
     type: LOAD_POST_SUCCESS,
     post
 });
@@ -29,7 +29,7 @@ export const reset_post_details = post => ({
 });
 
 // Update a post.
-export const update_post = post => ({
+const update_post = post => ({
     type: UPDATE_POST_SUCCESS,
     post
 });
@@ -41,7 +41,7 @@ export const receive_sorting = sorting => ({
 });
 
 
-//// Async Action Creators ////
+////////// ACTION CREATORS ASYNC ////////////////
 
 // Fetch all posts and dispatch async
 export const fetchPosts = dispatch => _ => {
@@ -73,7 +73,7 @@ export const upvotePost = dispatch => id => {
 // downvote post by id and dispatch async
 export const downvotePost = dispatch => id => {
     api.votePost(id, { option: 'downVote' })
-    .then(post => {
-        dispatch(update_post(post))
-    });
+        .then(post => {
+            dispatch(update_post(post))
+        });
 }

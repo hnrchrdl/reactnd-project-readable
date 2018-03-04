@@ -1,3 +1,10 @@
+.category-switcher {
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    top: 145px;
+    z-index: 9999999;
+}
 .category-switcher ul {
     list-style: none;
     display: flex;

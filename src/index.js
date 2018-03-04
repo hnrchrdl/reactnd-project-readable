@@ -1,6 +1,6 @@
 import './index.css'
 
-import { App } from './components'
+import App from './components/app/App'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import React from 'react'
@@ -17,5 +17,5 @@ ReactDOM.render(
         </BrowserRouter>
     </Provider>,
     document.getElementById('root'))
-    
+
 registerServiceWorker()

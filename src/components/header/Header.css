@@ -2,6 +2,14 @@
     font-family: 'Scope One', serif;
     border-bottom: 1px solid #ddd;
     padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 145px;
+    background-color: #fff;
+    box-sizing: border-box;
+    z-index: 9999999;
 }
 .header .inner {
     font-size: 4em;

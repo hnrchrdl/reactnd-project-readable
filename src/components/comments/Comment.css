@@ -1,0 +1,22 @@
+.comment {
+    display: flex;
+    margin-bottom: 20px;
+    font-size: .8em;
+    color: #666;
+}
+.comment .comment-wrapper .credit {
+    margin: 0 0 10px;
+}
+.comment-wrapper {
+    flex: 1 1 auto;
+}
+.comment {
+    border-left: 1px solid #ddd;
+}
+.comment pre {
+    font-family: 'Scope One';
+    margin-top: 0;
+}
+.edit-buttons {
+    float: right;
+}
