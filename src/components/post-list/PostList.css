@@ -24,6 +24,12 @@
     color: #f54;
     cursor: pointer;
 }
+.options .option.active {
+    border-bottom: 1px solid #f54;
+}
+.options .option {
+    margin-left: 8px;
+}
 .edit-post{
     position: absolute;
     right: 20px;

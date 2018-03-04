@@ -34,22 +34,22 @@ class PostList extends Component {
   render() {
 
     const { posts } = this.props;
-    
+
     return (
       <div className="post-list">
-        { this.renderSortBar(posts) }
-        { this.renderPostList(posts) }
+        {this.renderSortBar(posts)}
+        {this.renderPostList(posts)}
       </div>
     );
   }
 
   renderPostList(posts) {
-    
+
     if (posts.length > 0) {
       return (
         <div>
-          { posts.map(post => (
-            <Post key= { post.id } post={ post } showDetails={ false }/>
+          {posts.map(post => (
+            <Post key={post.id} post={post} showDetails={false} />
           ))}
         </div>
       );
@@ -61,21 +61,19 @@ class PostList extends Component {
       return (
         <div className="options sort-posts">
           <span>
-            { posts.length } post{ posts.length === 1 && 's' }.
+            {posts.length} post{posts.length === 1 && 's'}.
           </span>
-          { posts.length > 1 && <span> sort by </span> }
-          { SORT_OPTIONS.map((option, idx) => (
+          {posts.length > 1 && <span> sort by </span>}
+          {SORT_OPTIONS.map((option, idx) => (
             posts.length > 1 && (
-                 <span key={option.key}>
-                   <span className="option" onClick={ _ => this.sortPosts(option) }>
-                    { option.display }
-                  </span>
-                  <span>
-                    { idx !== SORT_OPTIONS.length - 1 && ' | ' /* not on last item */ }
-                  </span>
-                 </span> 
+              <span
+                key={option.key}
+                className={`option${this.props.sorting.key === option.key ? ' active' : ''}`}
+                onClick={_ => this.sortPosts(option)}>
+                {option.display}
+              </span>
             )
-           )) }
+          ))}
         </div>
       );
     } else {
@@ -88,8 +86,8 @@ class PostList extends Component {
   }
 
   sortPosts({ key, reverse }) {
-    reverse = this.props.sorting.key === key 
-      ? !this.props.sorting.reverse 
+    reverse = this.props.sorting.key === key
+      ? !this.props.sorting.reverse
       : reverse;
     this.props.sortPosts({ key, reverse });
   }
@@ -109,14 +107,14 @@ const getFilteredPosts = (posts, match) => {
 // sort posts based on the sorting props
 const getSortedPosts = (posts, sorting) => {
   if (sorting.key) {
-    return posts.sort(sortBy(sorting.key, sorting.reverse, 
+    return posts.sort(sortBy(sorting.key, sorting.reverse,
       SORT_OPTIONS.find(o => o.key === sorting.key).primer));
   }
   return posts;
 };
 
 const mapStateToProps = (state, props) => ({
-  posts: getSortedPosts(getFilteredPosts(state.post.posts, props.match),state.post.sorting),
+  posts: getSortedPosts(getFilteredPosts(state.post.posts, props.match), state.post.sorting),
   sorting: state.post.sorting
 });
 
