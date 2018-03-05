@@ -7,7 +7,6 @@ import React from 'react';
 import { timestampToDateString } from '../../utils/helper';
 
 export default ({ post, upvote, downvote, edit, del, showDetails, comments, addComment }) => (
-
   <div className={`post${showDetails ? ' details' : ''}`}>
     <div className="options edit-post">
       <Link to={`/__edit/${post.id}`} ><span className="option">edit</span></Link>

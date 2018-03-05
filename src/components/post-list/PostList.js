@@ -1,7 +1,13 @@
 import './PostList.css';
 
 import React, { Component } from 'react';
-import { deletePost, downvotePost, fetchPosts, receive_sorting, upvotePost } from '../../actions';
+import {
+  deletePost,
+  downvotePost,
+  fetchPosts,
+  receive_sorting,
+  upvotePost
+} from '../../actions';
 
 import { Link } from 'react-router-dom';
 import Post from '../post/Post';
@@ -51,8 +57,10 @@ class PostList extends Component {
   }
 
   renderPostList(posts) {
+
     const { upvotePost, downvotePost, deletePost } = this.props;
     const editPost = this.editPost;
+
     if (posts.length > 0) {
       return (
         <div>

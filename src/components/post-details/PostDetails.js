@@ -1,7 +1,7 @@
 import './PostDetails.css';
 
 import React, { Component } from 'react';
-import { downvotePost, fetchPosts, upvotePost } from '../../actions';
+import { deletePost, downvotePost, fetchPosts, upvotePost } from '../../actions';
 
 import Post from '../post/Post';
 import { connect } from 'react-redux';
@@ -17,16 +17,17 @@ class PostDetails extends Component {
 
     render() {
         // get the post from the props
-        const { post } = this.props;
+        const { post, upvotePost, downvotePost, deletePost, comments } = this.props;
         return (
             <div className="container post-details">
                 {post && (
                     <Post
                         post={post}
                         showDetails={true}
-                        upvote={this.props.upvotePost}
-                        downvote={this.props.downvotePost}
-                        comments={this.props.commments}
+                        upvote={_ => upvotePost(post.id)}
+                        downvote={_ => downvotePost(post.id)}
+                        del={_ => deletePost(post.id)}
+                        comments={comments}
                     />
                 )}
             </div>
@@ -48,7 +49,8 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => ({
     fetchPosts: fetchPosts(dispatch),
     upvotePost: upvotePost(dispatch),
-    downvotePost: downvotePost(dispatch)
+    downvotePost: downvotePost(dispatch),
+    deletePost: deletePost(dispatch)
 });
 
 //////// EXPORTS //////////////////////////////

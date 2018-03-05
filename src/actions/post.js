@@ -9,7 +9,6 @@ export const REMOVE_POST_SUCCESS = 'REMOVE_POST_SUCCESS';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 
 
-
 ////////// ACTION CREATORS SYNC ////////////////
 
 // Receive a list of posts.
@@ -111,10 +110,10 @@ export const upsertPost = dispatch => post => {
 }
 
 // delete post
-export const deletePost = dispatch => id => {
-    return api
+export const deletePost = dispatch => id => (
+    api
         .deletePost(id)
         .then(_ => {
             dispatch(remove_post(id))
-        });
-}
+        })
+)
