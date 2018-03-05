@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import CategorySwitcher from '../category-switcher/CategorySwitcher';
 import Header from '../header/Header'
+import NotFound404 from '../404/404';
 import PostDetails from '../post-details/PostDetails'
 import PostEdit from '../post-edit/PostEdit'
 import PostList from '../post-list/PostList'
@@ -21,6 +22,7 @@ class App extends Component {
           <Route exact path="/__edit/:id" component={PostEdit} />
           <Route exact path="/:category" component={PostList} />
           <Route exact path="/:category/:postid" component={PostDetails} />
+          <Route path="*" component={NotFound404} />
         </Switch>
       </div>
     );

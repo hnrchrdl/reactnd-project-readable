@@ -3,6 +3,7 @@ import './PostDetails.css';
 import React, { Component } from 'react';
 import { deletePost, downvotePost, fetchPosts, upvotePost } from '../../actions';
 
+import NotFound404 from '../404/404'
 import Post from '../post/Post';
 import { connect } from 'react-redux';
 
@@ -17,21 +18,32 @@ class PostDetails extends Component {
 
     render() {
         // get the post from the props
-        const { post, upvotePost, downvotePost, deletePost, comments } = this.props;
-        return (
-            <div className="container post-details">
-                {post && (
-                    <Post
-                        post={post}
-                        showDetails={true}
-                        upvote={_ => upvotePost(post.id)}
-                        downvote={_ => downvotePost(post.id)}
-                        del={_ => deletePost(post.id)}
-                        comments={comments}
-                    />
-                )}
-            </div>
-        );
+        const { post, upvotePost, downvotePost, comments } = this.props;
+
+        if (post) {
+            return (
+                <div className="container post-details">
+                    {post && (
+                        <Post
+                            post={post}
+                            showDetails={true}
+                            upvote={_ => upvotePost(post.id)}
+                            downvote={_ => downvotePost(post.id)}
+                            del={_ => this.deletePost(post.id)}
+                            comments={comments}
+                        />
+                    )}
+                </div>
+            );
+        } else {
+            return <NotFound404 />
+        }
+    }
+
+    deletePost(id) {
+        const { deletePost, history } = this.props;
+        deletePost(id);
+        history.push('/'); // Back to start, nothing to show here anymore.
     }
 }
 
