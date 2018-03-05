@@ -50,26 +50,26 @@ export const downvoteComment = dispatch => commentId => {
         });
 }
 
-export const addComment = dispatch => ({ body, author, parentId }) => {
+export const addComment = dispatch => ({ body, author, parentId }) => (
     api
         .addComment({ body, author, parentId })
         .then(data => {
-            dispatch(receive_comment({ comment: data, error: null }))
-        });
-}
+            return dispatch(receive_comment({ comment: data, error: null }))
+        })
+)
 
-export const updateComment = dispatch => ({ id, body }) => {
+export const updateComment = dispatch => ({ id, body }) => (
     api
         .updateComment({ id, body })
         .then(data => {
-            dispatch(receive_comment({ comment: data, error: null }))
-        });
-}
+            return dispatch(receive_comment({ comment: data, error: null }))
+        })
+)
 
-export const deleteComment = dispatch => commentId => {
+export const deleteComment = dispatch => commentId => (
     api
         .deleteComment(commentId)
         .then(data => {
-            dispatch(remove_comment({ id: commentId, error: null }))
-        });
-}
+            return dispatch(remove_comment({ id: commentId, error: null }))
+        })
+)

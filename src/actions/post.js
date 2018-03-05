@@ -97,16 +97,15 @@ export const downvotePost = dispatch => id => {
 // if post has id, update the post
 // else add as new post
 export const upsertPost = dispatch => post => {
-    console.log(post)
     if (post.id) {
-        api
+        return api
             .updatePost(post).then(post => {
-                dispatch(update_post(post))
+                return dispatch(update_post(post))
             });
     } else {
-        api.addPost(post)
+        return api.addPost(post)
             .then(post => {
-                dispatch(add_post(post))
+                return dispatch(add_post(post))
             });
     }
 }

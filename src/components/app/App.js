@@ -17,7 +17,8 @@ class App extends Component {
         <CategorySwitcher />
         <Switch>
           <Route exact path="/" component={PostList} />
-          <Route exact path="/edit/:id" component={PostEdit} />
+          <Route exact path="/__new" component={PostEdit} />
+          <Route exact path="/__edit/:id" component={PostEdit} />
           <Route exact path="/:category" component={PostList} />
           <Route exact path="/:category/:postid" component={PostDetails} />
         </Switch>

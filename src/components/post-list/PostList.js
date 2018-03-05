@@ -34,7 +34,8 @@ class PostList extends Component {
 
   componentDidMount() {
     // fetch all posts when mounting
-    this.props.fetchPosts()
+    const { fetchPosts } = this.props;
+    fetchPosts()
   }
 
   render() {
@@ -98,7 +99,7 @@ class PostList extends Component {
       // If there are no posts, show a link to add a new one.
       return (
         <div className="options">
-          0 posts. <Link to="/edit/0">Add a new one</Link>!
+          0 posts. <Link to="/__new">Add a new one</Link>!
         </div>
       );
     }

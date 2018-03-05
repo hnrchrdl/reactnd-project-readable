@@ -8,7 +8,7 @@ import { timestampToDateString } from '../../utils/helper';
 export default class Comment extends Component {
 
     // the textarea element ref
-    editBodyInput
+    bodyInputRef
 
     render() {
         const {
@@ -38,7 +38,7 @@ export default class Comment extends Component {
                         ? (<div>
                             <textarea
                                 defaultValue={comment.body}
-                                ref={el => this.editBodyInput = el}
+                                ref={el => this.bodyInputRef = el}
                             ></textarea>
                             <div className="edit-buttons">
                                 <Button
@@ -47,7 +47,7 @@ export default class Comment extends Component {
                                 />
                                 <Button
                                     text="ok"
-                                    onClick={_ => update(this.editBodyInput.value)}
+                                    onClick={_ => update(this.bodyInputRef.value)}
                                 />
                             </div>
                         </div>

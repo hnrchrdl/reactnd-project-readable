@@ -10,7 +10,7 @@ export default ({ post, upvote, downvote, edit, del, showDetails, comments, addC
 
   <div className={`post${showDetails ? ' details' : ''}`}>
     <div className="options edit-post">
-      <Link to={`/edit/${post.id}`} ><span className="option">edit</span></Link>
+      <Link to={`/__edit/${post.id}`} ><span className="option">edit</span></Link>
       {' | '}
       <span className="option" onClick={_ => del()}>delete</span>
     </div>

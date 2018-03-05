@@ -11,7 +11,7 @@ class Header extends Component {
         <div className="inner">
           readable
         </div>
-        <Link to="/edit/0">
+        <Link to="/__new">
           <div className="new">+</div>
         </Link>
 
