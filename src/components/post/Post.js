@@ -4,7 +4,7 @@ import Button from '../button/Button';
 import CommentList from '../comments/CommentList';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { timestampToDateString } from '../../utils/helper';
+import { prettyDate } from '../../utils/helper';
 
 export default ({ post, upvote, downvote, edit, del, showDetails, comments, addComment }) => (
   <div className={`post${showDetails ? ' details' : ''}`}>
@@ -37,7 +37,7 @@ export default ({ post, upvote, downvote, edit, del, showDetails, comments, addC
         </div>)
       }
       <div className="credit">
-        {timestampToDateString(post.timestamp)} by <b>{post.author}</b> in <Link to={'/' + post.category}>{post.category}</Link>.
+        {prettyDate(post.timestamp)} by <b>{post.author}</b> in <Link to={'/' + post.category}>{post.category}</Link>.
           </div>
       <div className="credit">
         {post.commentCount} comments.

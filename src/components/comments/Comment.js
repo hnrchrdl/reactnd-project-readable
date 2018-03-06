@@ -3,7 +3,7 @@ import './Comment.css'
 import React, { Component } from 'react';
 
 import Button from '../button/Button'
-import { timestampToDateString } from '../../utils/helper';
+import { prettyDate } from '../../utils/helper';
 
 export default class Comment extends Component {
 
@@ -55,7 +55,7 @@ export default class Comment extends Component {
                         : <div className="comment-body"><pre>{comment.body}</pre></div>
                     }
                     <div className="credit">
-                        {timestampToDateString(comment.timestamp)} by <b>{comment.author}</b>.
+                        {prettyDate(comment.timestamp)} by <b>{comment.author}</b>.
             </div>
                     <div className="options">
                         <span className="option" onClick={_ => enableEditMode()}>edit</span> |
