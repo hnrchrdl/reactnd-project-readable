@@ -40,7 +40,7 @@ export default ({ post, upvote, downvote, edit, del, showDetails, comments, addC
         {prettyDate(post.timestamp)} by <b>{post.author}</b> in <Link to={'/' + post.category}>{post.category}</Link>.
           </div>
       <div className="credit">
-        {post.commentCount} comments.
+        {post.commentCount} comments
       </div>
       {showDetails
         ? <CommentList postId={post.id} />
