@@ -31,7 +31,7 @@ const post = (url, body) => (
         .then(res => res.json())
 )
 
-// Generic PU request.
+// Generic PUT request.
 const put = (url, body) => (
     fetch(url, {
         method: 'PUT',
@@ -100,12 +100,12 @@ export const addPost = ({ title, body, author, category }) => {
 
 
 // Updates a post.
-export const updatePost = ({ title, body }) => {
+export const updatePost = ({ title, body, id }) => {
     const data = {
-        title: post.title,
-        body: post.body
+        title: title,
+        body: body
     }
-    return put(`${API_URL}/posts/${post.id}`, data)
+    return put(`${API_URL}/posts/${id}`, data)
 }
 
 

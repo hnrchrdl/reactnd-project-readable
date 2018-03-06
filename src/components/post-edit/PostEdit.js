@@ -42,7 +42,7 @@ class PostEdit extends Component {
 
   render() {
 
-    const { categories, post } = this.props;
+    const { categories, post = {} } = this.props;
     const { formErrMsg } = this.state;
 
     return (
@@ -58,22 +58,26 @@ class PostEdit extends Component {
           defaultValue={post && post.body}
           ref={el => this.formElements.body = el}
         ></textarea>
-        <select
-          defaultValue={post && post.category}
-          ref={el => this.formElements.category = el}
-        >
-          {(categories || []).map((c, idx) => (
-            <option
-              key={idx}
-              value={c.name}
-            >{c.name}</option>
-          ))}
-        </select>
-        <input
-          placeholder="author"
-          defaultValue={post && post.author}
-          ref={el => this.formElements.author = el}
-        />
+        {!post.id && (
+          <div>
+            <select
+              defaultValue={post && post.category}
+              ref={el => this.formElements.category = el}
+            >
+              {(categories || []).map((c, idx) => (
+                <option
+                  key={idx}
+                  value={c.name}
+                >{c.name}</option>
+              ))}
+            </select>
+            <input
+              placeholder="author"
+              defaultValue={post && post.author}
+              ref={el => this.formElements.author = el}
+            />
+          </div>
+        )}
         <Button
           className="submit"
           text="save"
@@ -84,20 +88,35 @@ class PostEdit extends Component {
   }
 
   handleSave = () => {
+    post
 
-    const { upsertPost } = this.props;
+    const { upsertPost, post = {} } = this.props;
+
+    let formIsValid = false;
+    const id = post.id
 
     // Get all the input values
-    const title = this.formElements.title.value;
-    const body = this.formElements.body.value;
-    const category = this.formElements.category.value;
-    const author = this.formElements.author.value;
+    post.title = this.formElements.title.value;
+    post.body = this.formElements.body.value;
 
-    if (title && body && category && author) {
+    if (!post.id) {
+      // New Post. Category and author are also needed.
+      post.category = this.formElements.category.value;
+      post.author = this.formElements.author.value;
+
+      // We need all items to be defined
+      formIsValid = post.title && post.body && post.category && post.author;
+    } else {
+      // Editing a post
+      // No category and author, but we have a post id.
+      formIsValid = post.title && post.body;
+    }
+
+    if (formIsValid) {
       // reset error and save post
       this.setState({ formErrMsg: null });
-      upsertPost({ title, body, category, author }).then(_ => {
-        this.props.history.push(`/${category}`)
+      upsertPost(post).then(res => {
+        this.props.history.push(`/${post.category}/${res.post.id}`)
       })
     } else {
       // not saving because of form error.
