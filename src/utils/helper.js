@@ -35,7 +35,7 @@ export const prettyDate = time => {
 }
 
 export const sortBy = (field, reverse, primer = x => (x)) => {
-
+    // https://stackoverflow.com/questions/979256/sorting-an-array-of-javascript-objects
     var key = primer ?
         function (x) { return primer(x[field]) } :
         function (x) { return x[field] };
