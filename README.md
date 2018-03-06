@@ -11,4 +11,4 @@ To get started developing right away:
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
-The Readable API Server can be found [here](https://github.com/udacity/reactnd-project-readable-starter)
+For running the project locally, you will need the Readable API Server. You can find it [here](https://github.com/udacity/reactnd-project-readable-starter).
